@@ -1,0 +1,4 @@
+﻿Status Message                                                                CompletedAt
+------ ---------------------------------------------------------------------- ---------------------------
+DONE   Discovery export completed. Send the files from C:\Temp\rtg-discovery. 2026-04-21 12:39:17.8486374
+

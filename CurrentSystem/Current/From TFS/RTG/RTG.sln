@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33927.289
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TOSConsole1", "TOSConsole1\TOSConsole\TOSConsole1.csproj", "{8F3F786D-001D-4A9A-AF91-9C762AF2D019}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TOSConsole2", "TOSConsole2\TOSConsole\TOSConsole2.csproj", "{77B2EAB1-D5DF-4069-8966-4588DFB445D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TOSConsole3", "TOSConsole3\TOSConsole\TOSConsole3.csproj", "{3E332AE0-4C6A-4944-8673-64E42BDD8D3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RTGApp3", "RTG3\RTGApp\RTGApp\RTGApp3.csproj", "{CE44246F-1999-4E5A-835B-3A8DD0815336}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RTGApp1-2", "RTG1-2\RTGApp\RTGApp\RTGApp1-2.csproj", "{24688595-8067-4EBD-A5A6-B31CC0509E03}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F3F786D-001D-4A9A-AF91-9C762AF2D019}.Debug|x86.ActiveCfg = Debug|x86
+		{8F3F786D-001D-4A9A-AF91-9C762AF2D019}.Debug|x86.Build.0 = Debug|x86
+		{8F3F786D-001D-4A9A-AF91-9C762AF2D019}.Release|x86.ActiveCfg = Release|x86
+		{8F3F786D-001D-4A9A-AF91-9C762AF2D019}.Release|x86.Build.0 = Release|x86
+		{77B2EAB1-D5DF-4069-8966-4588DFB445D6}.Debug|x86.ActiveCfg = Debug|x86
+		{77B2EAB1-D5DF-4069-8966-4588DFB445D6}.Debug|x86.Build.0 = Debug|x86
+		{77B2EAB1-D5DF-4069-8966-4588DFB445D6}.Release|x86.ActiveCfg = Release|x86
+		{77B2EAB1-D5DF-4069-8966-4588DFB445D6}.Release|x86.Build.0 = Release|x86
+		{3E332AE0-4C6A-4944-8673-64E42BDD8D3E}.Debug|x86.ActiveCfg = Debug|x86
+		{3E332AE0-4C6A-4944-8673-64E42BDD8D3E}.Debug|x86.Build.0 = Debug|x86
+		{3E332AE0-4C6A-4944-8673-64E42BDD8D3E}.Release|x86.ActiveCfg = Release|x86
+		{3E332AE0-4C6A-4944-8673-64E42BDD8D3E}.Release|x86.Build.0 = Release|x86
+		{CE44246F-1999-4E5A-835B-3A8DD0815336}.Debug|x86.ActiveCfg = Debug|x86
+		{CE44246F-1999-4E5A-835B-3A8DD0815336}.Debug|x86.Build.0 = Debug|x86
+		{CE44246F-1999-4E5A-835B-3A8DD0815336}.Release|x86.ActiveCfg = Release|x86
+		{CE44246F-1999-4E5A-835B-3A8DD0815336}.Release|x86.Build.0 = Release|x86
+		{24688595-8067-4EBD-A5A6-B31CC0509E03}.Debug|x86.ActiveCfg = Debug|x86
+		{24688595-8067-4EBD-A5A6-B31CC0509E03}.Debug|x86.Build.0 = Debug|x86
+		{24688595-8067-4EBD-A5A6-B31CC0509E03}.Release|x86.ActiveCfg = Release|x86
+		{24688595-8067-4EBD-A5A6-B31CC0509E03}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {92E08017-5A61-4BF1-9A8A-F3DB18706395}
+	EndGlobalSection
+EndGlobal

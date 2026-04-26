@@ -1,0 +1,205 @@
+# generated: 2026-04-26
+# last_updated: 2026-04-26 (1-1 in-progress flutter-blocked, 1-3 review — implementation complete, ready for code-review)
+# project: Craines-TOS
+# project_key: NOKEY
+# tracking_system: file-system
+# story_location: _bmad-output/implementation-artifacts
+
+# STATUS DEFINITIONS:
+# ==================
+# Epic Status:
+#   - backlog: Epic not yet started
+#   - in-progress: Epic actively being worked on
+#   - done: All stories in epic completed
+#
+# Epic Status Transitions:
+#   - backlog -> in-progress: Automatically when first story is created (via create-story)
+#   - in-progress -> done: Manually when all stories reach 'done' status
+#
+# Story Status:
+#   - backlog: Story only exists in epic file
+#   - ready-for-dev: Story file created in stories folder
+#   - in-progress: Developer actively working on implementation
+#   - review: Ready for code review (via Dev's code-review workflow)
+#   - done: Story completed
+#
+# Retrospective Status:
+#   - optional: Can be completed but not required
+#   - done: Retrospective has been completed
+#
+# WORKFLOW NOTES:
+# ===============
+# - Epic transitions to 'in-progress' automatically when first story is created
+# - Stories can be worked in parallel if team capacity allows
+# - Developer typically creates next story after previous one is 'done' to incorporate learnings
+# - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
+
+generated: 2026-04-26
+last_updated: 2026-04-26
+project: Craines-TOS
+# (1-1 created)
+project_key: NOKEY
+tracking_system: file-system
+story_location: _bmad-output/implementation-artifacts
+
+development_status:
+  # Epic 1: Operator Identity & Sign-in
+  epic-1: in-progress
+  1-1-repository-skeleton: in-progress
+  1-2-dev-environment-via-docker-compose: backlog
+  1-3-github-actions-ci-workflows: review
+  1-4-api-foundation-infrastructure: backlog
+  1-5-pg-schema-for-users-refresh-tokens-and-audit-log: backlog
+  1-6-argon2id-pin-hasher: backlog
+  1-7-rs256-jwt-issuer-and-validator: backlog
+  1-8-refresh-token-service-with-rotation-and-revocation: backlog
+  1-9-lockout-tracker: backlog
+  1-10-ad-ldap-sync-cron-service: backlog
+  1-11-auth-audit-publisher: backlog
+  1-12-auth-api-endpoints: backlog
+  1-13-cabin-design-system-foundation: backlog
+  1-14-cabin-hebrew-localization-he-arb-rtl: backlog
+  1-15-cabin-login-screen-ui-modern-layout: backlog
+  1-16-cabin-login-screen-behavior: backlog
+  1-17-cabin-auth-wiring-dio-interceptors-secure-storage: backlog
+  1-18-forklift-design-system-foundation: backlog
+  1-19-forklift-login-screen-ui-and-behavior: backlog
+  1-20-forklift-auth-wiring: backlog
+  epic-1-retrospective: optional
+
+  # Epic 2: Live Crane State (Wire Protocol + Real-time Map)
+  epic-2: backlog
+  2-1-v40-wire-protocol-decoder: backlog
+  2-2-v40-wire-protocol-encoder: backlog
+  2-3-v40-checksum-and-length-prefix-framing-helpers: backlog
+  2-4-pg-schema-for-cranes-crane-positions-and-listen-notify: backlog
+  2-5-crane-and-crane-position-repositories: backlog
+  2-6-system-io-pipelines-based-tcp-server: backlog
+  2-7-a1-position-handler: backlog
+  2-8-dead-letter-queue-for-unknown-frames: backlog
+  2-9-crane-listener-worker-service: backlog
+  2-10-cranes-rest-endpoints: backlog
+  2-11-signalr-rtghub-with-topic-subscriptions: backlog
+  2-12-pg-listen-signalr-fanout-pglistenerhostedservice: backlog
+  2-13-cabin-yard-map-screen-layout-m1: backlog
+  2-14-cabin-live-crane-position-indicator: backlog
+  2-15-cabin-gps-hud-widget: backlog
+  2-16-cabin-yard-map-data-wiring-riverpod-signalr: backlog
+  2-17-chesimu-integration-test-dev-runbook: backlog
+  epic-2-retrospective: optional
+
+  # Epic 3: Container Operations (PICK / PLACE / Cancel)
+  epic-3: backlog
+  3-1-pg-schema-for-jobs-locations-shifting-listen-notify-triggers: backlog
+  3-2-job-location-and-shifting-repositories: backlog
+  3-3-jobs-rest-endpoints: backlog
+  3-4-locations-rest-endpoints: backlog
+  3-5-listener-a2-pick-handler: backlog
+  3-6-listener-a2-place-handler-single-pg-transaction: backlog
+  3-7-listener-a3-cancel-handler: backlog
+  3-8-listener-outbound-job-dispatcher: backlog
+  3-9-cabin-yard-map-cell-selection-source-target-panels: backlog
+  3-10-cabin-yard-map-source-target-tile-visual-states: backlog
+  3-11-cabin-submit-job-action: backlog
+  3-12-cabin-cancel-job-hold-to-confirm: backlog
+  3-13-cabin-manual-location-editor: backlog
+  3-14-end-to-end-pick-place-cancel-chesimu-integration-test: backlog
+  epic-3-retrospective: optional
+
+  # Epic 4: Cabin Daily Operations (M2-M11 + Supporting APIs)
+  epic-4: backlog
+  4-1-cabin-self-update-endpoint: backlog
+  4-2-composite-container-detail-endpoint: backlog
+  4-3-truck-queues-endpoint: backlog
+  4-4-work-orders-endpoint: backlog
+  4-5-reports-endpoints-empty-no-location-expected: backlog
+  4-6-movements-log-endpoint: backlog
+  4-7-suggested-locations-scoring-endpoint: backlog
+  4-8-rtg-diagnostic-endpoints: backlog
+  4-9-reusable-numerickeypad-widget: backlog
+  4-10-m2-main-menu-screen: backlog
+  4-11-m3-jobs-list-screen: backlog
+  4-12-m4-numpad-container-picker-screen: backlog
+  4-13-m5-container-detail-deal-containers-screen: backlog
+  4-14-m6-truck-load-unload-screen: backlog
+  4-15-m7-suggested-locations-screen: backlog
+  4-16-m8-expected-containers-screen: backlog
+  4-17-m9-empty-no-location-split-screen: backlog
+  4-18-m10-movements-log-screen: backlog
+  4-19-m11-rtg-settings-gps-panel-screen: backlog
+  4-20-cabin-badge-feature-flag-high-contrast-mode-placeholder: backlog
+  epic-4-retrospective: optional
+
+  # Epic 5: Forklift Operations
+  epic-5: backlog
+  5-1-forklift-api-container-query-endpoints: backlog
+  5-2-forklift-api-container-update-endpoints: backlog
+  5-3-forklift-api-lookup-combos-recommended-location: backlog
+  5-4-forklift-api-damage-hazmat-un-endpoints: backlog
+  5-5-forklift-api-works-endpoints: backlog
+  5-6-forklift-self-update-endpoint: backlog
+  5-7-forklift-design-system-commission-ux-dr21-closure: backlog
+  5-8-forklift-offline-cache-write-queue-hive: backlog
+  5-9-forklift-f-key-shortcut-framework: backlog
+  5-10-frminformation-main-info-screen: backlog
+  5-11-frminfomenu: backlog
+  5-12-frmactivity-pick-place-reporting: backlog
+  5-13-frmworks: backlog
+  5-14-frmrecommendedlocation: backlog
+  5-15-frmemptycontainers: backlog
+  5-16-frminoutdiory: backlog
+  5-17-frmcomment-with-damage-mode: backlog
+  5-18-frmselectcontainer: backlog
+  5-19-frmspeciallocation: backlog
+  5-20-frmsamedealnumber: backlog
+  5-21-frmmessage-frmchangeforkliftnumber-combined: backlog
+  epic-5-retrospective: optional
+
+  # Epic 6: Migration Bridge (Dual-Write to MSSQL)
+  epic-6: backlog
+  6-1-pg-schema-for-dual-write-outbox: backlog
+  6-2-ipostcommitdualwriter-real-implementation-replaces-epic-3-stub: backlog
+  6-3-mssqlwriter-with-idempotency: backlog
+  6-4-outbox-processor-backgroundservice-with-retry-policy: backlog
+  6-5-postgres-fdw-setup-mssql-mirror-views: backlog
+  6-6-reconciliation-service-hourly-drift-check: backlog
+  6-7-drift-and-dlq-alert-publisher: backlog
+  6-8-auditweb-mirror-writer: backlog
+  6-9-end-to-end-dual-write-integration-test: backlog
+  epic-6-retrospective: optional
+
+  # Epic 7: Observability & Operational Readiness
+  epic-7: backlog
+  7-1-serilog-seq-integration-across-all-net-services: backlog
+  7-2-prometheus-metrics-export: backlog
+  7-3-grafana-sli-dashboards-4-dashboards: backlog
+  7-4-alertmanager-rules: backlog
+  7-5-health-check-endpoints-per-service: backlog
+  7-6-90-day-hot-retention-archive-script: backlog
+  7-7-self-update-version-rollout-monitoring: backlog
+  epic-7-retrospective: optional
+
+  # Epic 8: Pilot Deployment (GOLD3 Cutover)
+  epic-8: backlog
+  8-1-vm-provisioning-it-handoff-runbook: backlog
+  8-2-self-hosted-github-actions-runner: backlog
+  8-3-windows-service-registration: backlog
+  8-4-drain-shutdown-end-to-end-validation: backlog
+  8-5-secrets-on-vm-lifecycle-setup: backlog
+  8-6-ntp-sync-configuration: backlog
+  8-7-firewall-whitelist-coordination-runbook: backlog
+  8-8-tls-terminator-iis-reverse-proxy-cert-deployment: backlog
+  8-9-pre-cutover-dry-run-chesimu-e2e-load-test: backlog
+  8-10-cutover-saturday-rollback-runbook-combined: backlog
+  8-11-on-call-playbook: backlog
+  8-12-audit-log-review-post-cutover: backlog
+  epic-8-retrospective: optional
+
+  # Epic 9: Production Rollout (GOLD1 + GOLD2)
+  epic-9: backlog
+  9-1-lessons-learned-ledger-from-gold3-pilot: backlog
+  9-2-gold1-cutover-saturday: backlog
+  9-3-gold2-cutover-saturday: backlog
+  9-4-legacy-decommissioning: backlog
+  9-5-mssql-retirement-plan-downstream-consumer-migration-tracker: backlog
+  epic-9-retrospective: optional

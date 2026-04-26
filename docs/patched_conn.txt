@@ -1,0 +1,1 @@
+Data Source=10.10.200.51,49993;Initial Catalog=TerminalData_AI;User Id=GBDEV;Password=GoldAi$2026$Bond;TrustServerCertificate=True

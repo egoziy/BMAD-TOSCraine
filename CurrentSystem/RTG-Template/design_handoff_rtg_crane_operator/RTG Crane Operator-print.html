@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<title>RTG · Crane Operator — Design Spec (Print)</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #e9ecf2; font-family: "Heebo", system-ui, sans-serif; color: #0f172a; }
+
+  /* Each page is a landscape A3-ish canvas; we'll scale a 1920×1080 frame down to fit. */
+  .page {
+    width: 297mm;     /* A4 landscape width */
+    height: 210mm;    /* A4 landscape height */
+    page-break-after: always;
+    break-after: page;
+    background: #fff;
+    display: grid;
+    grid-template-rows: 16mm 1fr 10mm;
+    padding: 8mm 10mm;
+    gap: 3mm;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(15,23,42,.08);
+    margin: 0 auto 10mm;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  .page-head { display: flex; align-items: center; gap: 10px; }
+  .page-head .badge {
+    width: 34px; height: 34px; border-radius: 8px;
+    background: #0f766e; color: #fff;
+    display: grid; place-items: center;
+    font-size: 14px; font-weight: 800;
+    font-family: "IBM Plex Mono", monospace;
+  }
+  .page-head .title { font-size: 16px; font-weight: 800; }
+  .page-head .sub { font-size: 11px; color: #64748b; margin-top: 2px; }
+  .page-head .meta { margin-inline-start: auto; font-size: 10px; color: #64748b; text-align: left; }
+
+  .stage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    background: #000;
+  }
+  /* Inner fixed 1920x1080 that gets scaled to fit */
+  .frame {
+    position: absolute;
+    top: 0; left: 0;
+    width: 1920px;
+    height: 1080px;
+    transform-origin: top left;
+    background: #000;
+  }
+
+  .page-foot {
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 9px; color: #64748b;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 3mm;
+  }
+  .page-foot .brand { font-weight: 700; color: #0f172a; }
+
+  /* Cover page */
+  .cover {
+    grid-template-rows: 1fr auto 1fr;
+    background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+    color: #fff;
+    padding: 20mm;
+  }
+  .cover h1 { font-size: 54px; font-weight: 900; margin: 0; letter-spacing: -0.5px; }
+  .cover .kicker { font-size: 14px; font-weight: 700; letter-spacing: 3px; opacity: .8; }
+  .cover .meta-block { font-size: 12px; opacity: .85; line-height: 1.8; }
+  .cover .meta-block b { color: #fff; }
+  .cover .logo {
+    width: 80px; height: 80px; border-radius: 20px;
+    background: rgba(255,255,255,.15); border: 2px solid rgba(255,255,255,.3);
+    display: grid; place-items: center;
+    font-size: 36px; font-weight: 900; font-family: "IBM Plex Mono", monospace;
+    margin-bottom: 20px;
+  }
+  .cover-top { display: flex; flex-direction: column; justify-content: flex-end; }
+  .cover-bot { display: flex; justify-content: space-between; align-items: flex-end; }
+
+  /* TOC */
+  .toc-list { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm 10mm; }
+  .toc-item {
+    display: flex; gap: 10px; padding: 6px 0;
+    border-bottom: 1px dashed #cbd5e1;
+    align-items: baseline;
+  }
+  .toc-item .n {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px; font-weight: 700; color: #0f766e;
+    width: 30px;
+  }
+  .toc-item .t { flex: 1; font-size: 12px; font-weight: 600; }
+  .toc-item .p { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: #64748b; }
+
+  /* Section divider pages */
+  .divider {
+    background: #f8fafc;
+    grid-template-rows: 1fr;
+    place-items: center;
+    padding: 40mm 20mm;
+    text-align: center;
+  }
+  .divider .group {
+    font-size: 14px; font-weight: 700; letter-spacing: 4px; color: #64748b;
+  }
+  .divider h2 {
+    font-size: 68px; font-weight: 900; margin: 12px 0; line-height: 1;
+  }
+  .divider .desc {
+    font-size: 16px; color: #475569; max-width: 600px; margin: 20px auto 0;
+    line-height: 1.5;
+  }
+  .divider .accent {
+    width: 80px; height: 6px; border-radius: 3px; margin: 0 auto;
+  }
+
+  @media print {
+    html, body { background: #fff; }
+    .page { margin: 0; box-shadow: none; }
+    @page { size: A4 landscape; margin: 0; }
+  }
+</style>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<!-- shared modules -->
+<script type="text/babel" src="data.jsx"></script>
+<script type="text/babel" src="conservative.jsx"></script>
+<script type="text/babel" src="modern.jsx"></script>
+<script type="text/babel" src="modern-core.jsx"></script>
+<script type="text/babel" src="modern-screens-a.jsx"></script>
+<script type="text/babel" src="modern-screens-b.jsx"></script>
+<script type="text/babel" src="modern-screens-c.jsx"></script>
+<script type="text/babel" src="bold.jsx"></script>
+
+<div id="doc"></div>
+
+<script type="text/babel" data-presets="react">
+
+const PROJECT = 'RTG · מערכת מנופאי';
+const VERSION = 'גרסת עיצוב · אפריל 2026';
+const CLIENT = 'גולדבונד · לוגיסטיקה';
+const AUDIENCE = 'Flutter developer handoff · Product spec';
+
+const SCREENS = [
+  // Conservative (3)
+  { group: 'conservative', n: 'C1',  title: 'מסך ערוגה ראשי',                    comp: ConservativeMain },
+  { group: 'conservative', n: 'C2',  title: 'מכולות לגוש · מקלדת נומרית',     comp: ConservativeNumpad },
+  { group: 'conservative', n: 'C3',  title: 'פרטי מכולה + מכולות בעיסקה',   comp: ConservativeContainerDetail },
+  // Modern (11)
+  { group: 'modern',       n: 'M1',  title: 'מסך ערוגה ראשי + GPS HUD',        comp: ModernMain },
+  { group: 'modern',       n: 'M2',  title: 'תפריט ראשי',                          comp: ModernMenu },
+  { group: 'modern',       n: 'M3',  title: 'רשימת עבודות',                      comp: ModernJobsList },
+  { group: 'modern',       n: 'M4',  title: 'מכולות לגוש · מקלדת נומרית',     comp: ModernNumpad },
+  { group: 'modern',       n: 'M5',  title: 'פרטי מכולה + מכולות בעיסקה',   comp: ModernContainerDetail },
+  { group: 'modern',       n: 'M6',  title: 'טעינה / פריקת משאיות',             comp: ModernTruck },
+  { group: 'modern',       n: 'M7',  title: 'איתורים מומלצים',                 comp: ModernSuggested },
+  { group: 'modern',       n: 'M8',  title: 'מכולות צפויות',                     comp: ModernExpected },
+  { group: 'modern',       n: 'M9',  title: 'מכולות ריקות + ללא איתור',       comp: ModernEmptyAndNoLoc },
+  { group: 'modern',       n: 'M10', title: 'יומן תנועות',                        comp: ModernLog },
+  { group: 'modern',       n: 'M11', title: 'הגדרות RTG + פאנל GPS',           comp: ModernRTGSettings },
+  // Bold (3)
+  { group: 'bold',         n: 'B1',  title: 'מסך ערוגה ראשי · Cockpit',          comp: BoldMain },
+  { group: 'bold',         n: 'B2',  title: 'מכולות לגוש · Cockpit',              comp: BoldNumpad },
+  { group: 'bold',         n: 'B3',  title: 'פרטי מכולה · Cockpit',               comp: BoldContainerDetail },
+];
+
+const GROUPS = {
+  conservative: {
+    label: 'וריאציה 1',
+    name: 'שמרני · Conservative',
+    color: '#334155',
+    desc: 'עיצוב מוכר, קריא, ללא סיכונים. מתאים כשהמפעיל צריך התאמה מהירה ממערכות קיימות.',
+  },
+  modern: {
+    label: 'וריאציה 2 · מומלצת',
+    name: 'מודרני · Modern',
+    color: '#0f766e',
+    desc: 'עיצוב נקי בהשראת Material Design. היררכיה ברורה, צבעוניות נעימה, היזוני GPS מוטמעים לאורך כל המסכים.',
+  },
+  bold: {
+    label: 'וריאציה 3',
+    name: 'נועז · Bold Cockpit',
+    color: '#0ea5e9',
+    desc: 'מצב dark·HUD בסגנון תא טייס. נראות גבוהה גם בתאורה חזקה במנוף, עם דגש על המיקום הנוכחי.',
+  },
+};
+
+// Fixed scale: we scale 1920x1080 → fits inside a 277mm × 170mm stage (A4 landscape minus padding+header+footer)
+// 277mm ≈ 1046px @ 96dpi. Actual pixel width depends on print engine; we use CSS px.
+// We'll measure the stage at runtime and compute scale so it always fits without cropping.
+function ScreenFrame({ comp: Comp }) {
+  const frameRef = React.useRef(null);
+  React.useLayoutEffect(() => {
+    const frame = frameRef.current;
+    const stage = frame.parentElement;
+    const fit = () => {
+      const sw = stage.clientWidth, sh = stage.clientHeight;
+      const scale = Math.min(sw / 1920, sh / 1080);
+      frame.style.transform = `scale(${scale})`;
+      // center
+      const usedW = 1920 * scale, usedH = 1080 * scale;
+      frame.style.left = ((sw - usedW) / 2) + 'px';
+      frame.style.top  = ((sh - usedH) / 2) + 'px';
+    };
+    fit();
+    const ro = new ResizeObserver(fit);
+    ro.observe(stage);
+    return () => ro.disconnect();
+  }, []);
+  return (
+    <div className="stage">
+      <div className="frame" ref={frameRef}>
+        <Comp />
+      </div>
+    </div>
+  );
+}
+
+function CoverPage() {
+  return (
+    <div className="page cover" style={{ gridTemplateRows: '1fr auto 1fr' }}>
+      <div className="cover-top">
+        <div className="logo">R</div>
+        <div className="kicker">DESIGN SPECIFICATION</div>
+      </div>
+      <div>
+        <h1>{PROJECT}</h1>
+        <div style={{ fontSize: 20, fontWeight: 500, marginTop: 10, opacity: .85 }}>
+          מערכת ניהול והעברת מכולות · עמדת מנופאי RTG · 1920×1080 touchscreen
+        </div>
+      </div>
+      <div className="cover-bot">
+        <div className="meta-block">
+          <div><b>לקוח:</b> {CLIENT}</div>
+          <div><b>פלטפורמה:</b> Flutter · RTL עברית</div>
+          <div><b>גרסה:</b> {VERSION}</div>
+        </div>
+        <div className="meta-block" style={{ textAlign: 'left' }}>
+          <div><b>קהל:</b> {AUDIENCE}</div>
+          <div><b>סה"כ מסכים:</b> {SCREENS.length}</div>
+          <div><b>וריאציות:</b> 3 (שמרני · מודרני · נועז)</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function TOCPage() {
+  return (
+    <div className="page">
+      <div className="page-head">
+        <div className="badge">§</div>
+        <div>
+          <div className="title">תוכן עניינים · Table of Contents</div>
+          <div className="sub">{SCREENS.length} מסכים · 3 וריאציות עיצוב</div>
+        </div>
+        <div className="meta">{PROJECT} · {VERSION}</div>
+      </div>
+      <div style={{ padding: '4mm 2mm', overflow: 'hidden' }}>
+        {Object.entries(GROUPS).map(([key, g]) => (
+          <div key={key} style={{ marginBottom: 10 }}>
+            <div style={{
+              display: 'flex', alignItems: 'center', gap: 10,
+              padding: '6px 0', borderBottom: '2px solid ' + g.color, marginBottom: 6,
+            }}>
+              <span style={{
+                background: g.color, color: '#fff', padding: '3px 10px', borderRadius: 4,
+                fontSize: 11, fontWeight: 800, letterSpacing: 1,
+              }}>{g.label}</span>
+              <span style={{ fontSize: 14, fontWeight: 800 }}>{g.name}</span>
+              <span style={{ fontSize: 11, color: '#64748b' }}>— {g.desc}</span>
+            </div>
+            <div className="toc-list">
+              {SCREENS.filter(s => s.group === key).map((s, i) => (
+                <div key={s.n} className="toc-item">
+                  <span className="n" style={{ color: g.color }}>{s.n}</span>
+                  <span className="t">{s.title}</span>
+                  <span className="p">p. {SCREENS.indexOf(s) + 3}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="page-foot">
+        <span className="brand">{PROJECT}</span>
+        <span>Table of Contents</span>
+        <span>p. 2</span>
+      </div>
+    </div>
+  );
+}
+
+function DividerPage({ group, pageNum }) {
+  const g = GROUPS[group];
+  return (
+    <div className="page divider">
+      <div>
+        <div className="accent" style={{ background: g.color }} />
+        <div className="group" style={{ marginTop: 30 }}>{g.label}</div>
+        <h2 style={{ color: g.color }}>{g.name}</h2>
+        <div className="desc">{g.desc}</div>
+      </div>
+    </div>
+  );
+}
+
+function ScreenPage({ s, pageNum }) {
+  const g = GROUPS[s.group];
+  return (
+    <div className="page">
+      <div className="page-head">
+        <div className="badge" style={{ background: g.color }}>{s.n}</div>
+        <div>
+          <div className="title">{s.title}</div>
+          <div className="sub">{g.name} · 1920 × 1080 · {s.n}</div>
+        </div>
+        <div className="meta">
+          {PROJECT}<br/>
+          {VERSION}
+        </div>
+      </div>
+      <ScreenFrame comp={s.comp} />
+      <div className="page-foot">
+        <span className="brand">{PROJECT}</span>
+        <span>{g.name} — {s.title}</span>
+        <span>p. {pageNum}</span>
+      </div>
+    </div>
+  );
+}
+
+function Doc() {
+  const pages = [];
+  pages.push(<CoverPage key="cover" />);
+  pages.push(<TOCPage key="toc" />);
+  let pageNum = 3;
+
+  // Insert dividers before each group
+  let lastGroup = null;
+  SCREENS.forEach((s) => {
+    if (s.group !== lastGroup) {
+      pages.push(<DividerPage key={'div-' + s.group} group={s.group} pageNum={pageNum} />);
+      pageNum++;
+      lastGroup = s.group;
+    }
+    pages.push(<ScreenPage key={s.n} s={s} pageNum={pageNum} />);
+    pageNum++;
+  });
+
+  return <>{pages}</>;
+}
+
+ReactDOM.createRoot(document.getElementById('doc')).render(<Doc />);
+
+// Auto-open print dialog once everything is ready
+window.addEventListener('load', async () => {
+  try { await document.fonts.ready; } catch (_) {}
+  // Give React + image layout a beat
+  setTimeout(() => {
+    if (!location.hash.includes('noprint')) {
+      window.print();
+    }
+  }, 1200);
+});
+
+</script>
+
+</body>
+</html>

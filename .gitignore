@@ -1,0 +1,43 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.pdb
+
+# Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+**/Generated.tlog
+**/Flutter/ephemeral/
+**/Flutter/Generated.xcconfig
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Secrets
+**/secrets.env
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Large legacy artifacts — too big for GitHub (>50MB warn, >100MB hard reject)
+# These live on disk for reference but aren't versioned. If they're needed by a
+# fresh checkout, fetch them separately (S3, internal share, or git-lfs).
+CurrentSystem/KoneCranes/RTG/BXH videos/
+CurrentSystem/KoneCranes/RTG/Documents for Arnold/
+CurrentSystem/Current/RTG/Install/*.exe
+CurrentSystem/Current/rtg-discovery/02_columns.txt
+CurrentSystem/Current/rtg-discovery/03_keys_foreign_keys_indexes.txt

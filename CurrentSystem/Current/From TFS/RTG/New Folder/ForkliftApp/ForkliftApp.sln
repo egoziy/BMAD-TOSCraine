@@ -1,0 +1,71 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForkliftApp", "ForkliftApp\ForkliftApp.csproj", "{209182E9-685D-44EB-8747-A04E0B7030E6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C7B33DF2-FFC6-44F9-A4F3-E1977309D89D} = {C7B33DF2-FFC6-44F9-A4F3-E1977309D89D}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForkliftApp.DataAccess", "ForkliftApp.DataAccess\ForkliftApp.DataAccess.csproj", "{A43E140F-C5D0-4371-A46D-B837C5159409}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForkliftApp.Framework", "ForkliftApp.Framework\ForkliftApp.Framework.csproj", "{C7B33DF2-FFC6-44F9-A4F3-E1977309D89D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForkliftApp.BusinessLogic", "ForkliftApp.BusinessLogic\ForkliftApp.BusinessLogic.csproj", "{611AA1E3-C0A8-4FE2-AA11-7BDB57D60BA4}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ForkLiftAppSetup", "ForkLiftAppSetup\ForkLiftAppSetup.vdproj", "{339767DC-712D-4C1E-92A0-6929A22B73CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForkliftApp.Entities", "ForkliftApp.Entities\ForkliftApp.Entities.csproj", "{F11BED86-370D-4B93-920C-353A449CA3D8}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://dev.azure.com/goldbond
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ForkliftApp.BusinessLogic\\ForkliftApp.BusinessLogic.csproj
+		SccProjectName1 = ForkliftApp.BusinessLogic
+		SccLocalPath1 = ForkliftApp.BusinessLogic
+		SccProjectUniqueName2 = ForkliftApp.DataAccess\\ForkliftApp.DataAccess.csproj
+		SccProjectName2 = ForkliftApp.DataAccess
+		SccLocalPath2 = ForkliftApp.DataAccess
+		SccProjectUniqueName3 = ForkliftApp.Entities\\ForkliftApp.Entities.csproj
+		SccProjectName3 = ForkliftApp.Entities
+		SccLocalPath3 = ForkliftApp.Entities
+		SccProjectUniqueName4 = ForkliftApp.Framework\\ForkliftApp.Framework.csproj
+		SccProjectName4 = ForkliftApp.Framework
+		SccLocalPath4 = ForkliftApp.Framework
+		SccProjectUniqueName5 = ForkliftApp\\ForkliftApp.csproj
+		SccProjectName5 = ForkliftApp
+		SccLocalPath5 = ForkliftApp
+		SccProjectUniqueName6 = ForkLiftAppSetup\\ForkLiftAppSetup.vdproj
+		SccProjectName6 = ForkLiftAppSetup
+		SccLocalPath6 = ForkLiftAppSetup
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{209182E9-685D-44EB-8747-A04E0B7030E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{209182E9-685D-44EB-8747-A04E0B7030E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{209182E9-685D-44EB-8747-A04E0B7030E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{209182E9-685D-44EB-8747-A04E0B7030E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A43E140F-C5D0-4371-A46D-B837C5159409}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A43E140F-C5D0-4371-A46D-B837C5159409}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A43E140F-C5D0-4371-A46D-B837C5159409}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7B33DF2-FFC6-44F9-A4F3-E1977309D89D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7B33DF2-FFC6-44F9-A4F3-E1977309D89D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7B33DF2-FFC6-44F9-A4F3-E1977309D89D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{611AA1E3-C0A8-4FE2-AA11-7BDB57D60BA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{611AA1E3-C0A8-4FE2-AA11-7BDB57D60BA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{611AA1E3-C0A8-4FE2-AA11-7BDB57D60BA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{339767DC-712D-4C1E-92A0-6929A22B73CA}.Debug|Any CPU.ActiveCfg = Debug
+		{339767DC-712D-4C1E-92A0-6929A22B73CA}.Release|Any CPU.ActiveCfg = Release
+		{F11BED86-370D-4B93-920C-353A449CA3D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F11BED86-370D-4B93-920C-353A449CA3D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F11BED86-370D-4B93-920C-353A449CA3D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

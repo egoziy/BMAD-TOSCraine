@@ -1,0 +1,7 @@
+# Prometheus scrape configuration for craines-tos.
+# Story 7.2 fills this with scrape jobs for Rtg.Listener, Rtg.Api, Rtg.DualWrite (/metrics endpoints).
+
+global:
+  scrape_interval: 15s
+
+scrape_configs: []

@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 \"e:/AI/Craines-TOS/_bmad/scripts/resolve_customization.py\" --skill \"e:/AI/Craines-TOS/.claude/skills/bmad-agent-analyst\" --key agent)",
+      "Bash(python \"e:/AI/Craines-TOS/_bmad/scripts/resolve_customization.py\" --skill \"e:/AI/Craines-TOS/.claude/skills/bmad-agent-analyst\" --key agent)",
+      "Bash(PYTHONIOENCODING=utf-8 python \"e:/AI/Craines-TOS/_bmad/scripts/resolve_customization.py\" --skill \"e:/AI/Craines-TOS/.claude/skills/bmad-agent-analyst\" --key agent)",
+      "Bash(find . -name \"*.sln\")",
+      "Bash(find . -name \"*.csproj\")",
+      "Bash(python3 /e/AI/Craines-TOS/_bmad/scripts/resolve_customization.py --skill /e/AI/Craines-TOS/.claude/skills/bmad-agent-architect --key agent)",
+      "Bash(command -v py)",
+      "Bash(py /e/AI/Craines-TOS/_bmad/scripts/resolve_customization.py --skill /e/AI/Craines-TOS/.claude/skills/bmad-agent-architect --key agent)",
+      "Bash(command -v python)",
+      "Bash(python /e/AI/Craines-TOS/_bmad/scripts/resolve_customization.py --skill /e/AI/Craines-TOS/.claude/skills/bmad-agent-architect --key agent)",
+      "Bash(PYTHONIOENCODING=utf-8 py /e/AI/Craines-TOS/_bmad/scripts/resolve_customization.py --skill /e/AI/Craines-TOS/.claude/skills/bmad-agent-architect --key agent)",
+      "Bash(PYTHONIOENCODING=utf-8 py /e/AI/Craines-TOS/_bmad/scripts/resolve_customization.py --skill /e/AI/Craines-TOS/.claude/skills/bmad-create-architecture --key workflow)",
+      "WebSearch",
+      "Bash(PYTHONIOENCODING=utf-8 py /e/AI/Craines-TOS/_bmad/scripts/resolve_customization.py --skill /e/AI/Craines-TOS/.claude/skills/bmad-create-epics-and-stories --key workflow)",
+      "Bash(PYTHONIOENCODING=utf-8 py /e/AI/Craines-TOS/_bmad/scripts/resolve_customization.py --skill /e/AI/Craines-TOS/.claude/skills/bmad-sprint-planning --key workflow)",
+      "Bash(PYTHONIOENCODING=utf-8 py /e/AI/Craines-TOS/_bmad/scripts/resolve_customization.py --skill /e/AI/Craines-TOS/.claude/skills/bmad-dev-story --key workflow)",
+      "Bash(PYTHONIOENCODING=utf-8 py /e/AI/Craines-TOS/_bmad/scripts/resolve_customization.py --skill /e/AI/Craines-TOS/.claude/skills/bmad-create-story --key workflow)",
+      "Bash(dotnet new *)",
+      "Bash(dotnet sln *)",
+      "Bash(dotnet add *)",
+      "Bash(dotnet build *)",
+      "Bash(dotnet format *)",
+      "Bash(echo \"\\(exit=$?\\)\")",
+      "Bash(dotnet test *)",
+      "Bash(docker compose *)",
+      "Bash(choco list *)",
+      "Bash(export PATH=\"/e/AI/flutter/bin:$PATH\")",
+      "Bash(flutter --version)",
+      "Bash(winget --version)",
+      "Bash(winget search *)",
+      "Bash(choco install *)",
+      "Bash(py -m pip install --user pyyaml)",
+      "Bash(PYTHONIOENCODING=utf-8 py /e/AI/Craines-TOS/_bmad/scripts/resolve_customization.py --skill /e/AI/Craines-TOS/.claude/skills/bmad-code-review --key workflow)",
+      "Bash(git ls-remote *)",
+      "Bash(git config *)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" https://api.github.com/repos/egoziy/BMAD-TOSCraine)"
+    ]
+  }
+}

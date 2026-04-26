@@ -1,0 +1,78 @@
+name: ci-db
+
+on:
+  pull_request:
+    paths:
+      - 'db/**'
+      - '.github/workflows/ci-db.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'db/**'
+      - '.github/workflows/ci-db.yml'
+
+jobs:
+  lint-and-replay:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:18.3-alpine
+        env:
+          POSTGRES_USER: rtg
+          POSTGRES_PASSWORD: rtg
+          POSTGRES_DB: rtg
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U rtg"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgres://rtg:rtg@localhost:5432/rtg?sslmode=disable
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python (for sqlfluff)
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install sqlfluff
+        run: pip install sqlfluff
+
+      - name: SQL lint
+        run: |
+          if compgen -G "db/migrations/*.sql" > /dev/null; then
+            sqlfluff lint --dialect postgres db/migrations/
+          else
+            echo "No migration files yet — skipping lint"
+          fi
+
+      - name: Install dbmate
+        run: |
+          sudo curl -fsSL -o /usr/local/bin/dbmate \
+            https://github.com/amacneil/dbmate/releases/latest/download/dbmate-linux-amd64
+          sudo chmod +x /usr/local/bin/dbmate
+          dbmate --version
+
+      - name: Wait for postgres
+        run: |
+          for i in {1..30}; do
+            if pg_isready -h localhost -p 5432 -U rtg; then
+              echo "PG ready"
+              break
+            fi
+            sleep 1
+          done
+
+      - name: Apply migrations (dbmate up)
+        run: dbmate up
+
+      - name: Verify migration reversibility
+        run: |
+          if compgen -G "db/migrations/*.sql" > /dev/null; then
+            dbmate rollback
+            dbmate up
+          else
+            echo "No migrations to reverse — skipping"
+          fi

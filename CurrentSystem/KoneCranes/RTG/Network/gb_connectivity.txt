@@ -1,0 +1,33 @@
+                   Yard Network Connectivity ­ BxH RTG Cranes (G2036-37)
+                   Gold Bond Group Ltd., Ashdod Israel September 5th, 2017 // Sampo Pihkala, KC
+
+BxH Crane #1 (G2036)                                Customer                                                                       BxH Crane #2 (G2037)
+Data NETWORKs                                       Network                                                                              Data NETWORKs
+
+          mGuard 4004                              192.6.0.0/16                                                                      mGuard 4004
+          NAT Router &                                                                                                               NAT Router &
+          Firewall                                                                                                                   Firewall
+          WAN: 192.6.1.0/20                                                                                                          WAN: 192.6.2.0/20
+
+                             ...                                                                             ...
+
+          Trolley            Crane PLC                                                      Terminal        Crane PLC                             Trolley
+          Camera                              BMU                                      Router (L3/DGW)                       BMU                  Camera
+
+                                                                                          192.6.8.254/16  OP Panel VMT             Spreader
+                                                                                                                        TOS-Panel  Cameras
+Spreader
+Cameras
+
+                   OP Panel VMT                    Laptop-PC
+                                 TOS-Panel
+                                                                      DGPS
+ Gantry                           GPS-PC (CCS)                                                 MSSQ L     GPS-PC (CCS)              Gantry
+Cameras                           192.6.1.8/20                           Base Station                     192.6.2.8/20             Cameras
+                                                                       192.6.8.8/20    TOS
+
+         Video PC  Video                                                                                                Video               Video PC
+          (Video)    PC                                                                                                   PC                 (Video)
+
+                   (LAN)                                                                                                (LAN)
+

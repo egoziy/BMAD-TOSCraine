@@ -1,0 +1,73 @@
+name: ci-server
+
+on:
+  pull_request:
+    paths:
+      - 'server/**'
+      - '.github/workflows/ci-server.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'server/**'
+      - '.github/workflows/ci-server.yml'
+
+env:
+  DOTNET_VERSION: '10.0.x'
+  NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:18.3-alpine
+        env:
+          POSTGRES_USER: rtg
+          POSTGRES_PASSWORD: rtg
+          POSTGRES_DB: rtg
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U rtg"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      RTG_TEST_DATABASE_URL: postgres://rtg:rtg@localhost:5432/rtg?sslmode=disable
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.NUGET_PACKAGES }}
+          key: ${{ runner.os }}-nuget-${{ hashFiles('server/**/*.csproj', 'server/Directory.Packages.props') }}
+          restore-keys: ${{ runner.os }}-nuget-
+
+      - name: Restore
+        working-directory: server
+        run: dotnet restore Rtg.slnx
+
+      - name: Format check
+        working-directory: server
+        run: dotnet format Rtg.slnx --verify-no-changes --no-restore
+
+      - name: Build (Debug)
+        working-directory: server
+        run: dotnet build Rtg.slnx -c Debug --nologo --no-restore
+
+      - name: Build (Release)
+        working-directory: server
+        run: dotnet build Rtg.slnx -c Release --nologo --no-restore
+
+      - name: Unit tests
+        working-directory: server
+        run: dotnet test Rtg.Tests/Rtg.Tests.csproj --filter "Category!=Integration" --no-build --nologo --verbosity normal
+
+      - name: Integration tests (PG service)
+        working-directory: server
+        run: dotnet test Rtg.Tests/Rtg.Tests.csproj --filter "Category=Integration" --no-build --nologo --verbosity normal

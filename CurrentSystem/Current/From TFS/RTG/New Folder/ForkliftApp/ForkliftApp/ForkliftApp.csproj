@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{209182E9-685D-44EB-8747-A04E0B7030E6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ForkliftApp</RootNamespace>
+    <AssemblyName>ForkliftApp</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ManifestCertificateThumbprint>38D5510FED79ABDE340BE0941991138D11F97601</ManifestCertificateThumbprint>
+    <ManifestKeyFile>ForkliftApp_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>false</GenerateManifests>
+    <SignManifests>true</SignManifests>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <PublishUrl>C:\ForkLiftNewPublishNew\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <UpdateUrl>http://localhost/ForkliftApp/</UpdateUrl>
+    <TargetCulture>he</TargetCulture>
+    <PublisherName>ForkLift</PublisherName>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>false</BootstrapperEnabled>
+    <BootstrapperComponentsLocation>Relative</BootstrapperComponentsLocation>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>ForkliftApp.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ForkliftApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <ExecutableExtension>.exe</ExecutableExtension>
+    </Reference>
+    <Reference Include="msmdvbanet, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmActivity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmActivity.Designer.cs">
+      <DependentUpon>frmActivity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmChangeForkliftNUMBER.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmChangeForkliftNUMBER.Designer.cs">
+      <DependentUpon>frmChangeForkliftNUMBER.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmComment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmComment.Designer.cs">
+      <DependentUpon>frmComment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEmptyContainers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEmptyContainers.Designer.cs">
+      <DependentUpon>frmEmptyContainers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInfoMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInfoMenu.Designer.cs">
+      <DependentUpon>frmInfoMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInformation.Designer.cs">
+      <DependentUpon>frmInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInOutDiory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInOutDiory.Designer.cs">
+      <DependentUpon>frmInOutDiory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogIn.Designer.cs">
+      <DependentUpon>frmLogIn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMessage.Designer.cs">
+      <DependentUpon>frmMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRecommendedLocation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRecommendedLocation.Designer.cs">
+      <DependentUpon>frmRecommendedLocation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSameDealNumber.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSameDealNumber.Designer.cs">
+      <DependentUpon>frmSameDealNumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSelectContainer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSelectContainer.Designer.cs">
+      <DependentUpon>frmSelectContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSpecialLocation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSpecialLocation.Designer.cs">
+      <DependentUpon>frmSpecialLocation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmWorks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWorks.Designer.cs">
+      <DependentUpon>frmWorks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Installer1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Installer1.Designer.cs">
+      <DependentUpon>Installer1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyGlobal.cs" />
+    <Compile Include="Ping.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TerminalDataDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TerminalDataDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TerminalDataDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TerminalDataDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TouchScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TouchScreen.designer.cs">
+      <DependentUpon>TouchScreen.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmActivity.resx">
+      <DependentUpon>frmActivity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmChangeForkliftNUMBER.resx">
+      <DependentUpon>frmChangeForkliftNUMBER.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmComment.resx">
+      <DependentUpon>frmComment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEmptyContainers.resx">
+      <DependentUpon>frmEmptyContainers.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEmptyContainers.sma-SE.resx">
+      <DependentUpon>frmEmptyContainers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInfoMenu.resx">
+      <DependentUpon>frmInfoMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInformation.resx">
+      <DependentUpon>frmInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInOutDiory.resx">
+      <DependentUpon>frmInOutDiory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogIn.resx">
+      <DependentUpon>frmLogIn.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMessage.resx">
+      <DependentUpon>frmMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRecommendedLocation.resx">
+      <DependentUpon>frmRecommendedLocation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSameDealNumber.resx">
+      <DependentUpon>frmSameDealNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSelectContainer.resx">
+      <DependentUpon>frmSelectContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSpecialLocation.resx">
+      <DependentUpon>frmSpecialLocation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWorks.resx">
+      <DependentUpon>frmWorks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="TouchScreen.resx">
+      <DependentUpon>TouchScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ForkliftApp_TemporaryKey.pfx" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\DataSources\Conterm.ForkliftApp.DataAccess.ForkliftAppDS.datasource" />
+    <None Include="Properties\DataSources\Conterm.ForkliftApp.DataAccess.ForkliftAppDSTableAdapters.TableAdapterManager.datasource" />
+    <None Include="Properties\DataSources\Conterm.ForkliftApp.DataAccess.ForkliftAppDSTableAdapters.tblContainersListTableAdapter.datasource" />
+    <None Include="Properties\DataSources\ForkliftApp.Entities.ForkliftAppDS+CO_ContainersDataTable.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <None Include="TerminalDataDataSet.xsc">
+      <DependentUpon>TerminalDataDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="TerminalDataDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TerminalDataDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TerminalDataDataSet.xss">
+      <DependentUpon>TerminalDataDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="TerminalDataDataSet1.xsc">
+      <DependentUpon>TerminalDataDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="TerminalDataDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TerminalDataDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TerminalDataDataSet1.xss">
+      <DependentUpon>TerminalDataDataSet1.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ForkliftApp.BusinessLogic\ForkliftApp.BusinessLogic.csproj">
+      <Project>{611AA1E3-C0A8-4FE2-AA11-7BDB57D60BA4}</Project>
+      <Name>ForkliftApp.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ForkliftApp.DataAccess\ForkliftApp.DataAccess.csproj">
+      <Project>{A43E140F-C5D0-4371-A46D-B837C5159409}</Project>
+      <Name>ForkliftApp.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ForkliftApp.Entities\ForkliftApp.Entities.csproj">
+      <Project>{F11BED86-370D-4B93-920C-353A449CA3D8}</Project>
+      <Name>ForkliftApp.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ForkLiftNumber.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Resources\Lock1.jpg" />
+    <None Include="Resources\Lock11.jpg" />
+    <Content Include="תיקונים.txt" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

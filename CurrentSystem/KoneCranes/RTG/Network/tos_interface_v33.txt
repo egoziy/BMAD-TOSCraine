@@ -1,0 +1,287 @@
+                       CHE (RTG/RMG/SC/RS/TP/SP)
+
+                       Konecranes
+
+        Koncranes      Container       PLC
+         Interface
+     to VMT terminal   Position
+     RS-232 Serial or
+         Ethernet      System
+
+TOS                    VMT Terminal
+                       LXE/Teklogix
+
+                                  CHE
+
+                       Konecranes
+
+                       Container       PLC
+                        Position
+
+                       System
+
+                       VMT Terminal
+                       LXE/Teklogix
+FFXXNNaaaaaaaaaa...aaZZ
+
+    
+    
+    
+    
+    
+Offset  #bytes  Type   Name          Description
+000     2       Ascii  Msg-ID        Two byte msg ID ("A1"=0x4131 = 16689)
+002     6       Ascii  Version       Version number
+008     6       Ascii  Time          Read time (HHMMSS)
+                                     E.g.: 1:31 PM is represented as 133100
+014 4           Ascii  Status
+                Ascii  Position /    Auto-steering status (OK = "0000", any error: <> 0
+018 8                                (d))
+                Ascii  Crane status  Block name /"ERROR "/"NO BLOCK" bytes
+026 3                                018 ­ 025
+029 3                  GPS status    Bay number bytes 026 ­ 028
+032 4                                Row number bytes 029 ­ 031
+036 2                  CHE           Height, Logical value 1...7 bytes 032 ­ 035
+                       System sta-   "01" = Crane off
+038 2           Ascii  tus           "02" = Crane on /idle
+                       PLC comm.     "03" = Crane running
+040 5           Ascii  status        "04" = Crane error / Fatal error
+045 6           Ascii  PosX          "01" = GPS O.K
+                                     "02" = GPS internal module fault
+051 2           Ascii                "03" = No satellites
+                                     "04" = No communication to base station
+053 9           Ascii                ....
+                                     CHE id
+062 9           Ascii                Reserved for internal use
+                                     System status information
+071 2           Ascii
+073 1           Ascii                "01" = Communication OK
+                                     "02" = Communication Failure
+
+                                     Che position x-coordinate
+
+                       PosY          Che position y-coordinate
+
+                       Len           Spreader size 20/30/40/45/T  (T=Twin-lift)
+                       Twist lock    "O" twist lock open
+                                     "C" twist lock close
+offset  #bytes  Type      Name              Description
+000     2       Ascii     Msg-ID            Two byte msg ID ("A2" = 0x4132=16690)
+002     6       Ascii     Version           Version number
+008     2       AsciiHex  Counter           0-255
+010     2       Ascii     Move type         03" = CHE lifts container from ground
+                                            04" = CHE grounds container
+                Ascii     Time
+012 14                                      Read time (YYYYMMDDHHMMSS) E.g.: 1:31 PM
+                Ascii     Status
+                                            on 3 of July 2004 is represented as
+                Ascii     CHE
+                Ascii     ContWeight        20040703133100
+
+026 5           Ascii     PosOnTruck        Auto-steering status (OK = "0000", any error: <> 0
+
+031 5           Ascii     spare             (d))
+036 5           Ascii     ContID1
+                Ascii     ContID2           CHE id
+041 2           Ascii     Mount
+                Ascii     Tag               Container weight in kilograms. Valid in Place mes-
+043 5           Ascii     Position1
+048 12                                      sage only
+060 12          Ascii     Position2
+072 1                     (Filled only for  Optional. Measured position when picking/placing
+073 1           Ascii     Twin-lift)
+074 8           Ascii                       from truck. Measured in spreader up position
+082 3                     Len
+085 3                     System status     [spaces ]
+088 4
+092 8                                       Optional
+100 3
+103 3                                       Optional
+106 4
+110 2                                       Always "Y"
+112 6
+                                            Always "N"
+
+                                            Block name /"ERROR "/"NO BLOCK"
+
+                                            Bay number
+
+                                            Row number
+
+                                            Height
+
+                                            Block name /"ERROR "/"NO BLOCK"
+
+                                            Bay number
+
+                                            Row number
+
+                                            Height
+
+                                            Container size 20/30/40/45/T         (T=Twin-lift)
+
+                                            Reserved for internal use
+
+                                            System status information
+offset  #bytes  Type      Name              Description
+000     2                                   Two byte msg ID ("A3"=0x4133=16691)
+002     2       Ascii     Msg-ID            0-255
+
+                AsciiHex Counter
+
+offset  #bytes  Type      Name              Description
+000     2       Ascii     Msg-ID            Two byte msg ID ("A4" = 0x4134=16692)
+002     6       Ascii     Version           Version number
+008     2       AsciiHex  Counter           0-255
+010     2       Ascii     Move type         "03" = CHE lifts request from ground
+                                            "04" = CHE container ground request
+012 14          Ascii     Time
+                                            Read time (YYYYMMDDHHMMSS) E.g.: 1:31 PM
+026 5           Ascii     Status            on 3 of July 2004 is represented as
+                                            20040703133100
+031 5           Ascii     CHE               Auto-steering status (OK = "0000", any error: <> 0
+036 12          Ascii     Chassis           (d))
+048 12          Ascii     ContID1           CHE id
+060 12          Ascii     ContID2           [spaces ]
+072 1           Ascii     Mount             Optional
+073 1           Ascii     Tag               Optional
+074 8           Ascii     Position1         Always "Y"
+082 3                                       Always "N"
+085 3           Ascii     Position2         Block name /"ERROR "/"NO BLOCK"
+088 4                     (Filled only for  Bay number
+092 8                     Twin-lift)        Row number
+100 3                                       Height
+103 3                                       Block name /"ERROR "/"NO BLOCK"
+106 4                                       Bay number
+                                            Row number
+                                            Height
+110 2  Ascii  Len            Container size 20/30/40/45/T  (T=Twin-lift)
+112 6  Ascii  System status  Reserved for internal use
+                             System status information
+
+.
+offset  #bytes  Type   Name       Description
+000     2       Ascii  Msg-ID     Two byte msg ID ("B1" = 0x4231=16945)
+002     1       Ascii  TWL_block  "0" = Twist locks unblocked
+                                  "1" = Twist locks unblocked in truck lane
+                                  "2" = Twist locks blocking active
+
+offset  #bytes  Type   Name       Description
+000     2                         Two byte msg ID ("B2" = 0x4232=16946)
+002     2       Ascii  Msg-ID     0-255
+
+                AsciiHex Counter
+Offset  #bytes  Type      Name              Description
+000     2       Ascii     Msg-ID
+002     6       Ascii     Version           Two byte msg ID ("B3" = 0x4233=16947)
+008     2       AsciiHex  Counter
+010     14      Ascii     Time              Version number
+
+                Ascii     CHE               0-255
+                Ascii     ContID1
+                Ascii     ContID2           Read time (YYYYMMDDHHMMSS) E.g.: 1:31 PM
+                Ascii     Lift-Position1
+                                            on 3 of July 2004 is represented as
+                Ascii     Lift-Position2
+                          (Filled only for  20040703133100
+                Ascii     Twin-lift)
+024 5                                       CHE id
+029 12          Ascii     Place-Position1
+041 12                                      Container ID
+053 8           Ascii     Place-Position2
+061 3           Ascii     (Filled only for  Container ID 2 (Filled only for Twin-lift)
+064 3                     Twin-lift)
+067 4                                       Block name bytes 053 ­ 060
+071 8                     Len
+079 3                     PosOnTruck        Bay number bytes 061 ­ 063
+082 3
+085 4                                       Row number bytes 064 ­ 066
+089 8
+097 3                                       Height, Logical value 1...7 bytes 067 ­ 070
+100 3
+103 4                                       Block name bytes 071 ­ 078
+107 8
+115 3                                       Bay number bytes 079 ­ 081
+118 3
+121 4                                       Row number bytes 082 ­ 084
+125 2
+127 2                                       Height, Logical value 1...7 bytes 085 ­ 088
+
+                                            Block name bytes 089 ­ 096
+
+                                            Bay number bytes 097 ­ 099
+
+                                            Row number bytes 100 ­ 102
+
+                                            Height, Logical value 1...7 bytes 103 ­ 106
+
+                                            Block name bytes 107 ­ 114
+
+                                            Bay number bytes 115 ­ 117
+
+                                            Row number bytes 118 ­ 120
+
+                                            Height, Logical value 1...7 bytes 121 ­ 124
+
+                                            Container size 20/30/40/45/T           (T=Twin-lift)
+
+                                            Container position on truck or planned position to
+
+                                            truck starting from back of the truck
+
+                                            1. 20" rear position
+
+                                            2. 20" middle position or ( 40/45 container)
+
+                                            3. 20 " front position
+
+Offset #bytes   Type      Name              Description
+000 2                                       Two byte msg ID ("B4" = 0x4234=16948)
+002 2           Ascii     Msg-ID            0-255
+
+                AsciiHex Counter
+Offset #bytes  Type   Name       Description
+000 2                            Two byte msg ID ("B5" = 0x4235=16949)
+002 2          Ascii  Msg-ID     0-255
+
+               AsciiHex Counter
+                                Y12 , 250, 001, 1
+
+
+
+
+
+
+Section hex  Ascii/hex value  Section hex          Ascii/hex value
+0            0 0x30           8                    8 0x38
+1            1 0x31           9                    9 0x39
+2            2 0x32           A                    A 0x41
+3            3 0x33           B                    B 0x42
+4            4 0x34           C                    C 0x43
+5            5 0x35           D                    D 0x44
+6            6 0x36           E                    E 0x45
+7            7 0x37           F                    F 0x46
+                                 ContPos/                                 VMT
+                                    PDS                                 Terminal/
+
+                                  System                                   TOS
+
+  Autosteering &                              Heartbeat A1 message
+AutoStop Control                              Heartbeat A1 message
+                                              Heartbeat A1 message
+   Twistlock close                            Job Data Message (B3)
+ Autosteering &
+AutoStop Control                             Job Cancel Message (B4)
+                                               (only if job cancelled)
+    Twistlock open
+                                              Pick/Place message (A2)
+                                                Move type = 03 (Lift)
+
+                                               Heartbeat A1 message
+                                               Heartbeat A1 message
+                                           Pick/Place message (A2)
+                                           Move type = 04 (Place)
+                                               Heartbeat A1 message
+
+                                               Heartbeat A1 message
+

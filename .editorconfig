@@ -1,0 +1,40 @@
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.{yml,yaml,json,dart,arb}]
+indent_size = 2
+
+[*.md]
+trim_trailing_whitespace = false
+
+[*.{cs,csproj}]
+indent_size = 4
+csharp_new_line_before_open_brace = all
+dotnet_sort_system_directives_first = true
+csharp_style_namespace_declarations = file_scoped:warning
+csharp_style_var_for_built_in_types = false:suggestion
+csharp_style_var_when_type_is_apparent = true:suggestion
+
+# StyleCop rule overrides — relax the most pedantic defaults
+# while keeping meaningful style enforcement.
+[*.cs]
+# SA1633: file header required — most modern projects skip
+dotnet_diagnostic.SA1633.severity = none
+# SA1101: prefix local calls with 'this.' — outdated convention
+dotnet_diagnostic.SA1101.severity = none
+# SA1600: elements should be documented — too strict for internal libs
+# (XML doc warnings already silenced via CS1591 in Directory.Build.props for the same reason)
+dotnet_diagnostic.SA1600.severity = none
+# SA1602: enumeration items should be documented — same
+dotnet_diagnostic.SA1602.severity = none
+# SA1649: file name should match first type — too strict for Program.cs minimal-API style
+dotnet_diagnostic.SA1649.severity = none
+# SA1200: using directives should be inside namespace — file-scoped namespaces make this awkward
+dotnet_diagnostic.SA1200.severity = none

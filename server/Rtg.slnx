@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="Rtg.Api/Rtg.Api.csproj" />
+  <Project Path="Rtg.Auth/Rtg.Auth.csproj" />
+  <Project Path="Rtg.DualWrite/Rtg.DualWrite.csproj" />
+  <Project Path="Rtg.Listener/Rtg.Listener.csproj" />
+  <Project Path="Rtg.Persistence/Rtg.Persistence.csproj" />
+  <Project Path="Rtg.Tests/Rtg.Tests.csproj" />
+  <Project Path="Rtg.WireProtocol/Rtg.WireProtocol.csproj" />
+</Solution>

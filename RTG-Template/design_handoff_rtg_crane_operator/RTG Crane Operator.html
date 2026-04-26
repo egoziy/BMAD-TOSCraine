@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<title>RTG · מערכת מנופאי</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; height: 100%; background: #e9ecf2; font-family: "Heebo", system-ui, sans-serif; }
+  * { box-sizing: border-box; }
+  #root { width: 100vw; height: 100vh; }
+  button { font-family: inherit; }
+  /* hide any default dc scroll while loading */
+</style>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="data.jsx"></script>
+<script type="text/babel" src="conservative.jsx"></script>
+<script type="text/babel" src="modern.jsx"></script>
+<script type="text/babel" src="modern-core.jsx"></script>
+<script type="text/babel" src="modern-screens-a.jsx"></script>
+<script type="text/babel" src="modern-screens-b.jsx"></script>
+<script type="text/babel" src="modern-screens-c.jsx"></script>
+<script type="text/babel" src="bold.jsx"></script>
+
+<script type="text/babel" data-presets="react">
+const DC_ROOT = window.DesignCanvas;
+const DC_SECTION = window.DCSection;
+const DC_ARTBOARD = window.DCArtboard;
+
+// 21" touchscreen is usually 1920x1080 native.
+const W = 1920, H = 1080;
+
+function Frame({ children }) {
+  return (
+    <div style={{
+      width: W, height: H, overflow: 'hidden',
+      borderRadius: 14, background: '#000',
+      boxShadow: '0 30px 60px rgba(15,23,42,.25), 0 0 0 1px rgba(0,0,0,.1)',
+    }}>
+      {children}
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <DC_ROOT title="RTG · עמדת מנופאי" subtitle="שלוש וריאציות עיצוב · מערכת ניהול והעברת מכולות · RTL עברית · 1920×1080 למסך מגע 21&quot;">
+
+      <DC_SECTION id="conservative" title="וריאציה 1 · שמרני (מוכר, קריא, בטוח)">
+        <DC_ARTBOARD id="c-main" label="מסך ערוגה ראשי" width={W} height={H}>
+          <Frame><ConservativeMain /></Frame>
+        </DC_ARTBOARD>
+        <DC_ARTBOARD id="c-numpad" label="מכולות לגוש · מקלדת נומרית" width={W} height={H}>
+          <Frame><ConservativeNumpad /></Frame>
+        </DC_ARTBOARD>
+        <DC_ARTBOARD id="c-detail" label="פרטי מכולה + מכולות בעיסקה" width={W} height={H}>
+          <Frame><ConservativeContainerDetail /></Frame>
+        </DC_ARTBOARD>
+      </DC_SECTION>
+
+      <DC_SECTION id="modern" title="וריאציה 2 · מודרני (Material · נקי · מומלץ)">
+        <DC_ARTBOARD id="m-main" label="01 · מסך ערוגה ראשי + GPS HUD" width={W} height={H}>
+          <Frame><ModernMain /></Frame>
+        </DC_ARTBOARD>
+        <DC_ARTBOARD id="m-menu" label="02 · תפריט ראשי" width={W} height={H}>
+          <Frame><ModernMenu /></Frame>
+        </DC_ARTBOARD>
+        <DC_ARTBOARD id="m-jobs" label="03 · רשימת עבודות" width={W} height={H}>
+          <Frame><ModernJobsList /></Frame>
+        </DC_ARTBOARD>
+        <DC_ARTBOARD id="m-numpad" label="04 · מכולות לגוש · מקלדת נומרית" width={W} height={H}>
+          <Frame><ModernNumpad /></Frame>
+        </DC_ARTBOARD>
+        <DC_ARTBOARD id="m-detail" label="05 · פרטי מכולה + מכולות בעיסקה" width={W} height={H}>
+          <Frame><ModernContainerDetail /></Frame>
+        </DC_ARTBOARD>
+        <DC_ARTBOARD id="m-truck" label="06 · טעינה / פריקה של משאית" width={W} height={H}>
+          <Frame><ModernTruck /></Frame>
+        </DC_ARTBOARD>
+        <DC_ARTBOARD id="m-suggested" label="07 · איתורים מומלצים" width={W} height={H}>
+          <Frame><ModernSuggested /></Frame>
+        </DC_ARTBOARD>
+        <DC_ARTBOARD id="m-expected" label="08 · מכולות צפויות" width={W} height={H}>
+          <Frame><ModernExpected /></Frame>
+        </DC_ARTBOARD>
+        <DC_ARTBOARD id="m-empty" label="09 · מכולות ריקות + ללא איתור" width={W} height={H}>
+          <Frame><ModernEmptyAndNoLoc /></Frame>
+        </DC_ARTBOARD>
+        <DC_ARTBOARD id="m-log" label="10 · יומן תנועות" width={W} height={H}>
+          <Frame><ModernLog /></Frame>
+        </DC_ARTBOARD>
+        <DC_ARTBOARD id="m-rtg" label="11 · הגדרות RTG + GPS" width={W} height={H}>
+          <Frame><ModernRTGSettings /></Frame>
+        </DC_ARTBOARD>
+      </DC_SECTION>
+
+      <DC_SECTION id="bold" title="וריאציה 3 · נועז (Cockpit HUD · dark mode · נראות גבוהה)">
+        <DC_ARTBOARD id="b-main" label="מסך ערוגה ראשי" width={W} height={H}>
+          <Frame><BoldMain /></Frame>
+        </DC_ARTBOARD>
+        <DC_ARTBOARD id="b-numpad" label="מכולות לגוש · מקלדת נומרית" width={W} height={H}>
+          <Frame><BoldNumpad /></Frame>
+        </DC_ARTBOARD>
+        <DC_ARTBOARD id="b-detail" label="פרטי מכולה + מכולות בעיסקה" width={W} height={H}>
+          <Frame><BoldContainerDetail /></Frame>
+        </DC_ARTBOARD>
+      </DC_SECTION>
+
+    </DC_ROOT>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

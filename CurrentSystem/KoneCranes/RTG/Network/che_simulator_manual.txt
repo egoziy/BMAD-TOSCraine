@@ -1,0 +1,119 @@
+CHE simulator user manual
+
+                                                                                                                                    1/7
+Ver 1.0.0 Jarmo Mäkelä
+                                                                                                                                                    2/7
+1 INTRODUCTION                4
+
+2 User interface              5
+
+2.1 Connection section        5
+
+2.2 Current position section  6
+
+2.3 Heartbeat section         6
+
+2.4 Status section            6
+
+2.5 Job data section          7
+
+2.6 Actions window            7
+
+                                 3/7
+1 INTRODUCTION
+This manual instructs how to operate with che simulator application.
+Che simulator offers simple interface to TOS system including these
+features:
+
+     - connecting to TOS system as client or server
+     - sending pick/place messages to TOS system
+     - sending heartbeat messages to TOS messages
+     - receiving job messages from TOS system
+     - actions window to follow message flow
+Before using che simulator it has to be installed by executing
+corresponding installer. It is a window executable
+(KcCheSimulatorInstaller.exe) and it creates startup icon to desktop.
+Icon that installer creates looks like this.
+
+Start your application double clicking this icon.
+
+                                                                                                                                                               4/7
+2 User interface
+User interface window looks like this
+
+From TOS Type dropdown box you can select between three different versions
+YARDIT PDS 4.0
+YARDIT PDS 3.3
+YARDIT PDS 3.0
+Different sections of the user interface are handled in the next chapters.
+
+     2.1 Connection section
+      In Connection Type dropdown box you can select between TCP Client
+      and TCP Server options. Other options are currently not working.
+      IP Address is the destination (TOS) computer IP address. If TCP Server
+      is used, then address selection is not meaningful and is neglected because
+      TCP server is listening at any port.
+      Port is the port where TOS system is listening (Client Mode) or where CHE
+      simulator is listening (Server Mode).
+
+                                                                                                                                                               5/7
+If Ack Required check box is checked then job message is confirmed with
+acknowledge message. Also pick/place message expects
+acknowledgement.
+Max Resents spin box used to set up how many times pick/place message
+is resent if not acknowledged. This setting is meaningful only if Ack
+Required check box is checked.
+Resent Delay spin box is used to set up how many times pick/place
+message is resent if not acknowledged. This setting is meaningful only if
+Ack Required check box is checked.
+Connect/Listen push button is used to connect to tcp server (client mode)
+or to start listening at predefined port (server mode).
+
+2.2 Current position section
+
+At CheId text box the name of the simulated crane can be given.
+At Pos1 the position of the container 1 can be given.
+At Pos2 the position of container 2 (only twinlift) can be given.
+Container size can be selected from dropdown list Cont size.
+Twinlift can be activated by checking corresponding checkbox.
+Cont. Weight (kg) text box can be used to feed in container weight in
+kilograms.
+By pressing Pick or Place push buttons pick/place messages can be sent.
+
+2.3 Heartbeat section
+Heartbeat checkbox can be used to activate heartbeat message.
+Heartbeat message will be sent at constant intervals defined at Interval
+selection box. Number defines the interval in seconds.
+
+2.4 Status section
+In this section the following data can be given to be sent in
+heartbeat message:
+
+     - Autosteering Status (OK/ERROR)
+     - GPS Status (selection between seven different statuses)
+     - Crane Status (selection between four different statuses)
+     - Crane X position in meters compared to base station
+     - Crane Y position in meters compared to base station.
+
+                                                                                                                                                         6/7
+     - PLC communication status (OK/Failure)
+2.5 Job data section
+In this section job data message information is displayed including
+
+     - Lift position 1 for container 1
+     - Lift position 2 for container 2 (only twinlift)
+     - Pick position 1 for container 1
+     - Pick position 2 for container 2 (only twinlift)
+     - Lift xyz position (if used)
+     - Pick xyz position (if used)
+     - Truck place for lift (if used)
+     - Truck place for pick (if used)
+     - Container size in feet
+     - Position on truck (if used)
+     - Truck Type (if used)
+2.6 Actions window
+In actions window messages flowing from/to simulator will be
+displayed most recent message always at top.
+
+                                                                                                                                                         7/7
+

@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Rtg.WireProtocol\Rtg.WireProtocol.csproj" />
+    <ProjectReference Include="..\Rtg.Listener\Rtg.Listener.csproj" />
+    <ProjectReference Include="..\Rtg.Api\Rtg.Api.csproj" />
+    <ProjectReference Include="..\Rtg.Persistence\Rtg.Persistence.csproj" />
+    <ProjectReference Include="..\Rtg.DualWrite\Rtg.DualWrite.csproj" />
+    <ProjectReference Include="..\Rtg.Auth\Rtg.Auth.csproj" />
+  </ItemGroup>
+
+</Project>
