@@ -1,0 +1,48 @@
+name: ci-required
+
+# Single always-passing gate for branch protection (D1 → option b).
+#
+# Why this exists: the per-path workflows (ci-server, ci-flutter-{cabin,forklift},
+# ci-db) are path-filtered, so they only run when their relevant paths change.
+# GitHub branch protection requires named status checks to PASS — but a
+# path-filtered workflow that doesn't run reports "Expected — Waiting for status",
+# which blocks merge forever for PRs that don't touch all paths.
+#
+# This workflow always runs and always passes. Branch protection requires only
+# `ci-required / required` (this job) as the single mandatory check. The per-path
+# workflows still run when their paths change, and their results appear in the
+# PR's Checks tab — but they're advisory, not auto-blocking.
+#
+# Trade-off accepted (documented in docs/contributing/branch-protection.md):
+# a per-path workflow can fail and merge can still happen if the human reviewer
+# (CODEOWNERS) doesn't notice. CODEOWNERS review is the human-in-the-loop gate.
+#
+# Future hardening options:
+#   - GitHub Rulesets API (respects path filters; requires GH Enterprise plan)
+#   - workflow_run-triggered aggregator that fails when sub-workflows fail
+# Tracked in docs/contributing/branch-protection.md "Future hardening" section.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  required:
+    name: required
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Always-pass gate
+        run: |
+          echo "ci-required: branch-protection gate (always passes)."
+          echo "Per-path workflows still run; their failures are visible in the PR's"
+          echo "Checks tab and must be addressed by the CODEOWNERS reviewer."

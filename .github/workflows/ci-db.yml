@@ -10,10 +10,27 @@ on:
     paths:
       - 'db/**'
       - '.github/workflows/ci-db.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # Pinned versions — bump deliberately; floating versions break main retroactively.
+  DBMATE_VERSION: 'v2.21.0'
+  SQLFLUFF_VERSION: '3.0.7'
 
 jobs:
   lint-and-replay:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash
     services:
       postgres:
         image: postgres:18.3-alpine
@@ -26,7 +43,7 @@ jobs:
           --health-cmd "pg_isready -U rtg"
           --health-interval 10s
           --health-timeout 5s
-          --health-retries 10
+          --health-retries 20
     env:
       DATABASE_URL: postgres://rtg:rtg@localhost:5432/rtg?sslmode=disable
     steps:
@@ -37,8 +54,8 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install sqlfluff
-        run: pip install sqlfluff
+      - name: Install sqlfluff (pinned)
+        run: pip install "sqlfluff==${{ env.SQLFLUFF_VERSION }}"
 
       - name: SQL lint
         run: |
@@ -48,10 +65,10 @@ jobs:
             echo "No migration files yet — skipping lint"
           fi
 
-      - name: Install dbmate
+      - name: Install dbmate (pinned)
         run: |
           sudo curl -fsSL -o /usr/local/bin/dbmate \
-            https://github.com/amacneil/dbmate/releases/latest/download/dbmate-linux-amd64
+            "https://github.com/amacneil/dbmate/releases/download/${DBMATE_VERSION}/dbmate-linux-amd64"
           sudo chmod +x /usr/local/bin/dbmate
           dbmate --version
 
@@ -64,14 +81,21 @@ jobs:
             fi
             sleep 1
           done
+          pg_isready -h localhost -p 5432 -U rtg
 
       - name: Apply migrations (dbmate up)
         run: dbmate up
 
-      - name: Verify migration reversibility
+      - name: Verify migration reversibility (rollback all → up)
         run: |
           if compgen -G "db/migrations/*.sql" > /dev/null; then
-            dbmate rollback
+            # Rollback ALL applied migrations, not just the most recent.
+            # dbmate's `rollback` only reverses one at a time.
+            for i in {1..50}; do
+              applied=$(dbmate status 2>/dev/null | grep -c '\[X\]' || true)
+              if [ "$applied" = "0" ]; then break; fi
+              dbmate rollback || break
+            done
             dbmate up
           else
             echo "No migrations to reverse — skipping"

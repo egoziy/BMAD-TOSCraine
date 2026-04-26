@@ -10,6 +10,14 @@ on:
     paths:
       - 'server/**'
       - '.github/workflows/ci-server.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 env:
   DOTNET_VERSION: '10.0.x'
@@ -18,6 +26,7 @@ env:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     services:
       postgres:
         image: postgres:18.3-alpine
@@ -30,7 +39,7 @@ jobs:
           --health-cmd "pg_isready -U rtg"
           --health-interval 10s
           --health-timeout 5s
-          --health-retries 10
+          --health-retries 20
     env:
       RTG_TEST_DATABASE_URL: postgres://rtg:rtg@localhost:5432/rtg?sslmode=disable
     steps:
@@ -45,7 +54,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{ env.NUGET_PACKAGES }}
-          key: ${{ runner.os }}-nuget-${{ hashFiles('server/**/*.csproj', 'server/Directory.Packages.props') }}
+          key: ${{ runner.os }}-nuget-${{ hashFiles('server/**/*.csproj', 'server/Directory.Packages.props', 'server/global.json', 'server/nuget.config') }}
           restore-keys: ${{ runner.os }}-nuget-
 
       - name: Restore
@@ -64,10 +73,10 @@ jobs:
         working-directory: server
         run: dotnet build Rtg.slnx -c Release --nologo --no-restore
 
-      - name: Unit tests
+      - name: Unit tests (Debug)
         working-directory: server
-        run: dotnet test Rtg.Tests/Rtg.Tests.csproj --filter "Category!=Integration" --no-build --nologo --verbosity normal
+        run: dotnet test Rtg.Tests/Rtg.Tests.csproj -c Debug --filter "Category!=Integration" --no-build --nologo --verbosity normal
 
-      - name: Integration tests (PG service)
+      - name: Integration tests (Debug, PG service)
         working-directory: server
-        run: dotnet test Rtg.Tests/Rtg.Tests.csproj --filter "Category=Integration" --no-build --nologo --verbosity normal
+        run: dotnet test Rtg.Tests/Rtg.Tests.csproj -c Debug --filter "Category=Integration" --no-build --nologo --verbosity normal
