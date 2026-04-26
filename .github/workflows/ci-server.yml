@@ -43,7 +43,7 @@ jobs:
     env:
       RTG_TEST_DATABASE_URL: postgres://rtg:rtg@localhost:5432/rtg?sslmode=disable
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Set up .NET
         uses: actions/setup-dotnet@v4

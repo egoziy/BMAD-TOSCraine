@@ -9,5 +9,5 @@ jobs:
   placeholder:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - run: echo "Real deploy logic implemented in Story 8.x (manual approval gate + self-hosted runner)"
